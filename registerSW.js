@@ -1,0 +1,1 @@
+if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/SIM-sarpras/sw.js', { scope: '/SIM-sarpras/' })})}

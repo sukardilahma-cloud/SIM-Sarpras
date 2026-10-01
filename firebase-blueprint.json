@@ -1,0 +1,102 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "Akun pengguna sistem SARPRAS baik Super Admin maupun Petugas",
+      "type": "object",
+      "properties": {
+        "username": { "type": "string" },
+        "nama": { "type": "string" },
+        "role": { "type": "string", "enum": ["super", "umum"] },
+        "password": { "type": "string" },
+        "email": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "provider": { "type": "string", "enum": ["google", "local"] },
+        "isActivated": { "type": "boolean" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["username", "nama", "role"]
+    },
+    "SarprasRecord": {
+      "title": "SarprasRecord",
+      "description": "Data aset inventaris sarana dan prasarana sekolah",
+      "type": "object",
+      "properties": {
+        "__backendId": { "type": "string" },
+        "tanggal": { "type": "string" },
+        "record_type": { "type": "string" },
+        "sub_type": { "type": "string" },
+        "kode": { "type": "string" },
+        "nama": { "type": "string" },
+        "lokasi": { "type": "string" },
+        "gedung": { "type": "string" },
+        "ruangan": { "type": "string" },
+        "penanggung_jawab": { "type": "string" },
+        "jumlah": { "type": "number" },
+        "satuan": { "type": "string" },
+        "kondisi": { "type": "string" },
+        "sumber": { "type": "string" },
+        "pengarang": { "type": "string" },
+        "peminjam": { "type": "string" },
+        "status": { "type": "string" },
+        "keterangan": { "type": "string" },
+        "foto": { "type": "string" },
+        "luas": { "type": "number" },
+        "status_kepemilikan": { "type": "string" },
+        "tahun": { "type": "string" },
+        "tgl_kembali": { "type": "string" },
+        "pengguna": { "type": "string" },
+        "keperluan": { "type": "string" }
+      },
+      "required": ["__backendId", "record_type", "kode", "nama"]
+    },
+    "LogActivity": {
+      "title": "LogActivity",
+      "description": "Catatan riwayat audit aktivitas dan transaksi sarpras",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "tanggal": { "type": "string" },
+        "user": { "type": "string" },
+        "aksi": { "type": "string" },
+        "jenisData": { "type": "string" },
+        "keterangan": { "type": "string" }
+      },
+      "required": ["id", "tanggal", "user", "aksi", "keterangan"]
+    },
+    "AppSettings": {
+      "title": "AppSettings",
+      "description": "Pengaturan identitas sekolah dan akun Google master",
+      "type": "object",
+      "properties": {
+        "schoolName": { "type": "string" },
+        "schoolSubtitle": { "type": "string" },
+        "schoolAddress": { "type": "string" },
+        "principalName": { "type": "string" },
+        "principalNip": { "type": "string" },
+        "schoolAdminGoogleEmail": { "type": "string" },
+        "schoolAdminGoogleName": { "type": "string" },
+        "lastDriveBackupTime": { "type": "string" }
+      },
+      "required": ["schoolName"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "Koleksi akun pengguna dan petugas sekolah lintas perangkat"
+    },
+    "/records/{recordId}": {
+      "schema": { "$ref": "#/entities/SarprasRecord" },
+      "description": "Koleksi data inventaris sarana prasarana sekolah terpusat"
+    },
+    "/logs/{logId}": {
+      "schema": { "$ref": "#/entities/LogActivity" },
+      "description": "Koleksi riwayat audit aktivitas"
+    },
+    "/settings/{settingId}": {
+      "schema": { "$ref": "#/entities/AppSettings" },
+      "description": "Dokumen pengaturan sekolah dan identitas Google Master"
+    }
+  }
+}

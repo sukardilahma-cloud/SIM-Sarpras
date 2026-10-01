@@ -1,0 +1,10 @@
+{
+  "name": "SARPRAS — Sistem Sarana & Prasarana Sekolah",
+  "description": "Aplikasi Manajemen Sarana dan Prasarana (SARPRAS) SMK Negeri 1 Kotamobagu untuk Android dan Windows dengan KIB A-E, barang habis pakai, peminjaman aset, cetak PDF, dan Excel.",
+  "requestFramePermissions": [
+    "camera"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
